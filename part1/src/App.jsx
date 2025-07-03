@@ -1,56 +1,109 @@
+import { useState } from "react"
 
-const Header = (props) => {
-  return (
-    <>
-      <h1>{props.course}</h1>
-    </>
-  )
-}
+// const Header = (props) => {
+//   return (
+//     <>
+//       <h1>{props.course.name}</h1>
+//     </>
+//   )
+// }
 
-const Content = (props) => {
-  return (
-    <>
-      <Part part={props.part1} exercise={props.exercise1} />
-      <Part part={props.part2} exercise={props.exercise2} />
-      <Part part={props.part3} exercise={props.exercise3} />
-    </>
-  )
-}
+// const Content = (props) => {
+//   return (
+//     <>
+//       <Part part={props.parts[0]} />
+//       <Part part={props.parts[1]} />
+//       <Part part={props.parts[2]} />
+//     </>
+//   )
+// }
 
-const Part = (props) => {
-  return (
-    <>
-      <p>{props.part} {props.exercise}</p>
-    </>
-  )
-}
+// const Part = (props) => {
+//   return (
+//     <>
+//       <p>{props.part.name} {props.part.exercises}</p>
+//     </>
+//   )
+// }
 
-const Total = (props) => {
-  return (
-    <>
-      <p>Number of exercises {props.total}</p>
-    </>
-  )
-}
+// const Total = (props) => {
+//   const exercise1 = props.parts[0].exercises
+//   const exercise2 = props.parts[1].exercises
+//   const exercise3 = props.parts[2].exercises
+//   const total = exercise1 + exercise2 + exercise3
+
+//   return (
+//     <>
+//       <p>Number of exercises {total}</p>
+//     </>
+//   )
+// }
+
+// const Hello = ({ name, age }) => {
+//   const bornYear = () => new Date().getFullYear() - age;
+
+//   return (
+//     <div>
+//       <p>Hello {name}, you are {age} years old.</p>
+//       <p>So you were probably born in {bornYear()}</p>
+//     </div>
+//   )
+// }
+
+const Display = ({ counter }) => <div>{counter}</div>
+
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  // const course = {
+  //   name: 'Half Stack application development',
+  //   parts: [
+  //     {
+  //       name: 'Fundamentals of React',
+  //       exercises: 10
+  //     },
+  //     {
+  //       name: 'Using props to pass data',
+  //       exercises: 7
+  //     },
+  //     {
+  //       name: 'State of a component',
+  //       exercises: 14
+  //     }
+  //   ]
+  // }
+  // const name = 'Peter';
+  // const age = 10
+  const [counter, setCounter] = useState(0)
+  console.log('rendering with counter value', counter)
+
+  const increaseByOne = () => {
+    console.log('increasing, value before', counter)
+    setCounter(counter + 1)
+  }
+  const decreaseByOne = () => {
+    console.log('decreasing, value before', counter)
+    setCounter(counter - 1)
+  }
+  const setToZero = () => {
+    console.log('resetting to zero, value before', counter)
+    setCounter(0)
+  }
 
   return (
     <div>
-      <Header course={course} />
-      <Content
-        part1={part1} exercise1={exercises1}
-        part2={part2} exercise2={exercises2}
-        part3={part3} exercise3={exercises3} />
-      <Total
-        total={exercises1 + exercises2 + exercises3} />
+
+      <Display counter={counter} />
+      <br />
+      <Button onClick={increaseByOne} text='plus' />
+      <Button onClick={decreaseByOne} text='minus' />
+      <Button onClick={setToZero} text='zero' />
+      {/* <Header course={course} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} /> */}
+      {/* <h1>Greetings</h1>
+      <Hello name="Booker" age={10 + 15} />
+      <Hello name={name} age={age} /> */}
     </div>
   )
 }
