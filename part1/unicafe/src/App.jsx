@@ -10,21 +10,26 @@ const Button = ({ handleClick, text }) => {
   )
 }
 
-const Statistics = ({goodFb, neutralFb, badFb}) => {
+const Statistics = ({ goodFb, neutralFb, badFb }) => {
   const allFeedbacks = goodFb + neutralFb + badFb
   const avgFeedbacks = (goodFb + neutralFb + badFb) / 3
   const positiveAvg = (goodFb / allFeedbacks) * 100
 
-  return(
-    <p>
-      good: {goodFb} <br/>
-      neutral: {neutralFb} <br/>
-      bad: {badFb} <br />
-      total: {allFeedbacks} <br />
-      average: {avgFeedbacks} % <br />
-      positive: {positiveAvg} %
-    </p>
-  )
+  if (!allFeedbacks) {
+    return <p>No feedback given</p>
+  }
+  else {
+    return (
+      <p>
+        good: {goodFb} <br />
+        neutral: {neutralFb} <br />
+        bad: {badFb} <br />
+        total: {allFeedbacks} <br />
+        average: {avgFeedbacks} % <br />
+        positive: {positiveAvg} %
+      </p>
+    )
+  }
 }
 
 const App = () => {
@@ -51,11 +56,11 @@ const App = () => {
   return (
     <div>
       <Header text='give feedback' />
-      <Button handleClick={handleGood} text='good'/>
-      <Button handleClick={handleNeutral} text='neutral'/>
-      <Button handleClick={handleBad} text='bad'/>
+      <Button handleClick={handleGood} text='good' />
+      <Button handleClick={handleNeutral} text='neutral' />
+      <Button handleClick={handleBad} text='bad' />
       <Header text='statistics' />
-      <Statistics goodFb={good} neutralFb={neutral} badFb={bad}/>
+      <Statistics goodFb={good} neutralFb={neutral} badFb={bad} />
     </div>
   )
 }
