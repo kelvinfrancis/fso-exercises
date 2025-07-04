@@ -11,11 +11,18 @@ const Button = ({ handleClick, text }) => {
 }
 
 const Statistics = ({goodFb, neutralFb, badFb}) => {
+  const allFeedbacks = goodFb + neutralFb + badFb
+  const avgFeedbacks = (goodFb + neutralFb + badFb) / 3
+  const positiveAvg = (goodFb / allFeedbacks) * 100
+
   return(
     <p>
       good: {goodFb} <br/>
       neutral: {neutralFb} <br/>
-      bad: {badFb}
+      bad: {badFb} <br />
+      total: {allFeedbacks} <br />
+      average: {avgFeedbacks} % <br />
+      positive: {positiveAvg} %
     </p>
   )
 }
