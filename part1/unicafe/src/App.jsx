@@ -20,16 +20,25 @@ const Statistics = ({ goodFb, neutralFb, badFb }) => {
   }
   else {
     return (
-      <p>
-        good: {goodFb} <br />
-        neutral: {neutralFb} <br />
-        bad: {badFb} <br />
-        total: {allFeedbacks} <br />
-        average: {avgFeedbacks} % <br />
-        positive: {positiveAvg} %
-      </p>
+      <table>
+        <StatisticLine text={'good'} value={goodFb}/>
+        <StatisticLine text={'neutral'} value={neutralFb} />
+        <StatisticLine text={'bad'} value={badFb} />
+        <StatisticLine text={'total'} value={allFeedbacks} />
+        <StatisticLine text={'average'} value={avgFeedbacks}/>
+        <StatisticLine text={'positive'} value={positiveAvg} simbol={'%'}/>
+      </table>
     )
   }
+}
+
+const StatisticLine = ({ text, value, simbol }) => {
+  return (
+    <tr>{text}
+      <td>{value} {simbol}</td>
+    </tr>
+    
+  )
 }
 
 const App = () => {
