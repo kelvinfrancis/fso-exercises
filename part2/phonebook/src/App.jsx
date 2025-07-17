@@ -1,28 +1,37 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
-  const [newName, setNewName] = useState('')
+  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [newName, setNewName] = useState("");
 
   const addPerson = (event) => {
     event.preventDefault();
-    setPersons(persons.concat({
-      name: newName
-    }));
-  }
+    let isInBook = false;
+    persons.forEach((person) => {
+      if (person.name.toLowerCase() === newName.toLowerCase()) isInBook = true;
+    });
+    if (!isInBook) {
+      setPersons(
+        persons.concat({
+          name: newName,
+        })
+      );
+    } else {
+      alert(`${newName} is already added to phonebook`)
+      isInBook = false
+    }
+  };
 
   const handlePersonChange = (event) => {
-    setNewName(event.target.value)
-  }
+    setNewName(event.target.value);
+  };
 
   return (
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addPerson}>
         <div>
-          name: <input type='text' onChange={handlePersonChange} />
+          name: <input type="text" onChange={handlePersonChange} />
         </div>
         <div>
           <button type="submit">add</button>
@@ -35,7 +44,7 @@ const App = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
